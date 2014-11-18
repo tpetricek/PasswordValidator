@@ -1,3 +1,6 @@
+### 1.1 - Unreleased
+* Fixed gh-pages for demo
+
 ### 1.0 - Unreleased
 * More awesome stuff coming
 * Added SourceLink for Source Indexing PDB
@@ -11,3 +14,4 @@
 #### 0.0.1-beta - October 24 2013
 * Changed name from fsharp-project-scaffold to FSharp.ProjectScaffold
 * Initial release
+
