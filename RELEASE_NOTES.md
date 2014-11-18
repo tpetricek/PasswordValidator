@@ -1,3 +1,6 @@
+### 1.2 - Unreleased
+* Comment out Github release to simplify demo
+
 ### 1.1 - Unreleased
 * Fixed gh-pages for demo
 
