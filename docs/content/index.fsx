@@ -26,10 +26,10 @@ Example
 This example demonstrates using a function defined in this sample library.
 
 *)
-#r "FSharp.ProjectTemplate.dll"
-open FSharp.ProjectTemplate
+#r "PasswordValidator.dll"
+open PasswordValidator
 
-printfn "hello = %i" <| Library.hello 0
+// TODO: Add sample!
 
 (**
 Some more info

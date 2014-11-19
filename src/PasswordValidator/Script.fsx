@@ -4,5 +4,3 @@
 #load "Library.fs"
 open PasswordValidator
 
-let num = Library.hello 42
-printfn "%i" num
