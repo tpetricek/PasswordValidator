@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>tutorial</title>
+    <title>Password validator tutorial
+</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Simple password validator"/>
     <meta name="author" content="Tomas Petricek"/>
@@ -32,8 +33,96 @@
       <div class="row">
         <div class="span9" id="main">
           
-<p>Demo</p>
+<h1>Password validator tutorial</h1>
 
+<p>This is a silly demo library for validating passwords. You can check
+that password has the specified <em>length</em>, contains <em>upper case</em> letter
+and contains <em>digits</em>.</p>
+
+<h2>Referencing the library</h2>
+
+<p>If you're using F# Interactive, you can reference the library as follows:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">PasswordValidator</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">PasswordValidator</span></pre>
+</td>
+</tr>
+</table>
+
+<h2>Validating passwords</h2>
+
+<p>There are two ways of validating passwords:</p>
+
+<ul>
+<li><p><strong>Requirements</strong> - You can use individual requirements via
+the <code>IRequirement</code> interface. The implementations can be found
+in the <code>Validators</code> module.</p></li>
+<li><p><strong>Power validator</strong> - Alternatively, you can use the 
+<code>PowerValidator</code> type, which takes a collection of requirements.</p></li>
+</ul>
+
+<h3>Requirements</h3>
+
+<p>The following snippet demonstrates the length requirement:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">len</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">Validators</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">LengthRequirement</span>
+<span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="i">len</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">IsSatisfied</span>(<span class="s">&quot;</span><span class="s">hello</span><span class="s">&quot;</span>)       <span class="c">// &#39;false&#39;</span>
+<span onmouseout="hideTip(event, 'fs2', 7)" onmouseover="showTip(event, 'fs2', 7)" class="i">len</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="i">IsSatisfied</span>(<span class="s">&quot;</span><span class="s">hello</span><span class="s"> </span><span class="s">world</span><span class="s">&quot;</span>) <span class="c">// &#39;true&#39;</span></pre>
+</td>
+</tr>
+</table>
+
+<h3>Power validator</h3>
+
+<p>The following demonstrates how to use <code>PowerValidator</code> to 
+check for the presence of digit and uppr case letter:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="i">valids</span> <span class="o">=</span> 
+  [ <span onmouseout="hideTip(event, 'fs3', 10)" onmouseover="showTip(event, 'fs3', 10)" class="i">Validators</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 11)" onmouseover="showTip(event, 'fs7', 11)" class="i">DigitRequirement</span> 
+    <span onmouseout="hideTip(event, 'fs3', 12)" onmouseover="showTip(event, 'fs3', 12)" class="i">Validators</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="i">UpperCaseRequirement</span> ]
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="i">pow</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="i">PowerValidator</span>(<span onmouseout="hideTip(event, 'fs6', 16)" onmouseover="showTip(event, 'fs6', 16)" class="i">valids</span>)
+<span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="i">pow</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="i">IsSatisfied</span>(<span class="s">&quot;</span><span class="s">Hello</span><span class="s">&quot;</span>)  <span class="c">// &#39;false&#39;</span>
+<span onmouseout="hideTip(event, 'fs9', 19)" onmouseover="showTip(event, 'fs9', 19)" class="i">pow</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="i">IsSatisfied</span>(<span class="s">&quot;</span><span class="s">1</span><span class="s">Hello</span><span class="s">&quot;</span>) <span class="c">// &#39;true&#39;</span></pre>
+</td>
+</tr>
+</table>
+
+<div class="tip" id="fs1">namespace PasswordValidator</div>
+<div class="tip" id="fs2">val len : IRequirement<br /><br />Full name: Tutorial.len</div>
+<div class="tip" id="fs3">module Validators<br /><br />from PasswordValidator</div>
+<div class="tip" id="fs4">val LengthRequirement : IRequirement<br /><br />Full name: PasswordValidator.Validators.LengthRequirement</div>
+<div class="tip" id="fs5">abstract member IRequirement.IsSatisfied : string -&gt; bool</div>
+<div class="tip" id="fs6">val valids : IRequirement list<br /><br />Full name: Tutorial.valids</div>
+<div class="tip" id="fs7">val DigitRequirement : IRequirement<br /><br />Full name: PasswordValidator.Validators.DigitRequirement</div>
+<div class="tip" id="fs8">val UpperCaseRequirement : IRequirement<br /><br />Full name: PasswordValidator.Validators.UpperCaseRequirement</div>
+<div class="tip" id="fs9">val pow : PowerValidator<br /><br />Full name: Tutorial.pow</div>
+<div class="tip" id="fs10">Multiple items<br />type PowerValidator =<br />&#160;&#160;new : requirements:seq&lt;IRequirement&gt; -&gt; PowerValidator<br />&#160;&#160;member IsSatisfied : password:string -&gt; bool<br /><br />Full name: PasswordValidator.PowerValidator<br /><br />--------------------<br />new : requirements:seq&lt;IRequirement&gt; -&gt; PowerValidator</div>
+<div class="tip" id="fs11">member PowerValidator.IsSatisfied : password:string -&gt; bool</div>
 
         </div>
         <div class="span3">
